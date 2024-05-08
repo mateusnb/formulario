@@ -16,7 +16,7 @@ function aplicarMascara() {
 function sendEmail() {
   Email.send({
     SecureToken: "YOUR_SECURE_TOKEN_HERE", // to use this, you need have account on site https://elasticemail.com/ and, if you use this, you don't need use the code on the lines 19, 20 and 21
-    // Host : "smtp.elasticemail.com",
+    // Host : "smtp.gmail.com",
     // Username : "username",
     // Password : "password",
     To: 'YOUR_EMAIL_HERE',
