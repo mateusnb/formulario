@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS • Estratégia Integrada</title>
+    
+    <!-- Fonte e Estilos Base -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ===== RESET E VARIÁVEIS ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Paleta NEXUS */
+            --borgonha: #800020;
+            --cobre: #B87333;
+            --azul-meia-noite: #191970;
+            --prata: #C0C0C0;
+            --dourado: #C9A959;
+            --grafite: #36454F;
+            --branco: #FFFFFF;
+            --off-white: #F5F5F5;
+            --preto: #1E1E1E;
+            
+            /* Gradientes por segmento */
+            --gradiente-politica: linear-gradient(135deg, var(--borgonha), var(--azul-meia-noite));
+            --gradiente-marketing: linear-gradient(135deg, var(--cobre), var(--dourado));
+            --gradiente-financas: linear-gradient(135deg, var(--azul-meia-noite), var(--prata));
+            --gradiente-nexus: linear-gradient(135deg, var(--borgonha), var(--azul-meia-noite), var(--cobre));
+            
+            --shadow-sm: 0 5px 15px rgba(0,0,0,0.05);
+            --shadow-md: 0 10px 30px rgba(0,0,0,0.1);
+            --shadow-lg: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--grafite);
+            background-color: var(--branco);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        /* ===== COMPONENTES NEXUS ===== */
+        .nexus-gradient {
+            background: var(--gradiente-nexus);
+        }
+
+        .glass-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 24px;
+        }
+
+        .segment-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .badge-politica {
+            background: rgba(128,0,32,0.1);
+            border: 1px solid rgba(128,0,32,0.3);
+            color: var(--borgonha);
+        }
+
+        .badge-marketing {
+            background: rgba(184,115,51,0.1);
+            border: 1px solid rgba(184,115,51,0.3);
+            color: var(--cobre);
+        }
+
+        .badge-financas {
+            background: rgba(25,25,112,0.1);
+            border: 1px solid rgba(25,25,112,0.3);
+            color: var(--azul-meia-noite);
+        }
+
+        /* ===== HEADER NEXUS ===== */
+        .nexus-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .header-container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 20px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-nexus {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-nexus h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            background: var(--gradiente-nexus);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0;
+        }
+
+        .logo-nexus .variants {
+            display: flex;
+            gap: 8px;
+            margin-left: 10px;
+        }
+
+        .variant {
+            font-size: 0.8rem;
+            padding: 4px 8px;
+            border-radius: 20px;
+            background: var(--off-white);
+            color: var(--grafite);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .variant:hover {
+            background: var(--gradiente-nexus);
+            color: var(--branco);
+        }
+
+        .nav-nexus {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-nexus a {
+            text-decoration: none;
+            color: var(--grafite);
+            font-weight: 500;
+            position: relative;
+        }
+
+        .nav-nexus a:after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradiente-nexus);
+            transition: width 0.3s;
+        }
+
+        .nav-nexus a:hover:after {
+            width: 100%;
+        }
+
+        .btn-consulta {
+            background: var(--gradiente-nexus);
+            color: var(--branco);
+            border: none;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-consulta:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ===== CHAT NEXUS ===== */
+        .nexus-chat {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 380px;
+            background: var(--branco);
+            border-radius: 24px;
+            box-shadow: var(--shadow-lg);
+            z-index: 999;
+            display: none;
+        }
+
+        .nexus-chat.active {
+            display: block;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .chat-header {
+            background: var(--gradiente-nexus);
+            color: var(--branco);
+            padding: 20px;
+            border-radius: 24px 24px 0 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .chat-header i {
+            font-size: 1.5rem;
+        }
+
+        .chat-header h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .chat-header p {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .chat-messages {
+            height: 300px;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .message {
+            margin-bottom: 16px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .message.nexus {
+            align-items: flex-start;
+        }
+
+        .message.usuario {
+            align-items: flex-end;
+        }
+
+        .message-content {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .nexus .message-content {
+            background: var(--off-white);
+            border-bottom-left-radius: 4px;
+        }
+
+        .usuario .message-content {
+            background: var(--gradiente-nexus);
+            color: var(--branco);
+            border-bottom-right-radius: 4px;
+        }
+
+        .chat-input {
+            padding: 20px;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .chat-input input:focus {
+            border-color: var(--cobre);
+        }
+
+        .chat-input button {
+            width: 45px;
+            height: 45px;
+            border: none;
+            border-radius: 50%;
+            background: var(--gradiente-nexus);
+            color: var(--branco);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .chat-input button:hover {
+            transform: scale(1.05);
+        }
+
+        .chat-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            background: var(--gradiente-nexus);
+            color: var(--branco);
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            z-index: 998;
+            transition: all 0.3s;
+        }
+
+        .chat-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .chat-toggle i {
+            font-size: 1.5rem;
+        }
+
+        /* ===== HERO NEXUS ===== */
+        .hero-nexus {
+            padding: 140px 40px 80px;
+            max-width: 1440px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(184,115,51,0.1);
+            border-radius: 40px;
+            color: var(--cobre);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .hero-title {
+            font-size: 3.8rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero-title span {
+            background: var(--gradiente-nexus);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 30px;
+            max-width: 90%;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin: 40px 0;
+        }
+
+        .stat-item h3 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--borgonha);
+            margin-bottom: 5px;
+        }
+
+        .stat-item p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn-primary {
+            background: var(--gradiente-nexus);
+            color: var(--branco);
+            border: none;
+            padding: 16px 32px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--grafite);
+            border: 2px solid var(--cobre);
+            padding: 14px 30px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-outline:hover {
+            background: rgba(184,115,51,0.1);
+            transform: translateY(-2px);
+        }
+
+        .hero-visual {
+            position: relative;
+        }
+
+        .nexus-card {
+            background: var(--branco);
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            z-index: 2;
+        }
+
+        .segment-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .segment-row:last-child {
+            border-bottom: none;
+        }
+
+        .segment-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .segment-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .icon-politica {
+            background: rgba(128,0,32,0.1);
+            color: var(--borgonha);
+        }
+
+        .icon-marketing {
+            background: rgba(184,115,51,0.1);
+            color: var(--cobre);
+        }
+
+        .icon-financas {
+            background: rgba(25,25,112,0.1);
+            color: var(--azul-meia-noite);
+        }
+
+        .segment-name {
+            font-weight: 600;
+        }
+
+        .segment-status {
+            font-size: 0.85rem;
+            color: #27ae60;
+        }
+
+        .segment-value {
+            font-weight: 600;
+            color: var(--cobre);
+        }
+
+        /* ===== SEGMENTOS ===== */
+        .segmentos-section {
+            padding: 80px 40px;
+            background: var(--off-white);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .section-header h2 span {
+            background: var(--gradiente-nexus);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        .segmentos-grid {
+            max-width: 1440px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .segmento-card {
+            background: var(--branco);
+            border-radius: 24px;
+            padding: 40px 30px;
+            text-align: left;
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .segmento-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .segmento-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+        }
+
+        .card-politica:before {
+            background: var(--gradiente-politica);
+        }
+
+        .card-marketing:before {
+            background: var(--gradiente-marketing);
+        }
+
+        .card-financas:before {
+            background: var(--gradiente-financas);
+        }
+
+        .segmento-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+
+        .segmento-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .segmento-card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .segmento-tag {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .tag-politica {
+            background: rgba(128,0,32,0.1);
+            color: var(--borgonha);
+        }
+
+        .tag-marketing {
+            background: rgba(184,115,51,0.1);
+            color: var(--cobre);
+        }
+
+        .tag-financas {
+            background: rgba(25,25,112,0.1);
+            color: var(--azul-meia-noite);
+        }
+
+        /* ===== PRODUTOS NEXUS ===== */
+        .produtos-section {
+            padding: 80px 40px;
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+
+        .produtos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .produto-card {
+            background: var(--branco);
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #eee;
+            transition: all 0.3s;
+        }
+
+        .produto-card:hover {
+            box-shadow: var(--shadow-md);
+            border-color: var(--cobre);
+        }
+
+        .produto-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .produto-header h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .produto-header i {
+            font-size: 2rem;
+        }
+
+        .produto-desc {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .produto-features {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .produto-features li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .produto-features i {
+            color: var(--cobre);
+            font-size: 0.9rem;
+        }
+
+        .produto-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--cobre);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .produto-link:hover {
+            gap: 12px;
+        }
+
+        /* ===== GRAFIAS ===== */
+        .grafias-section {
+            padding: 60px 40px;
+            background: var(--off-white);
+        }
+
+        .grafias-container {
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+
+        .grafias-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+        }
+
+        .grafias-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .grafia-card {
+            background: var(--branco);
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s;
+        }
+
+        .grafia-card:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-md);
+        }
+
+        .grafia-card .grafia {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: var(--gradiente-nexus);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .grafia-card .estilo {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .grafia-card .aplicacao {
+            font-size: 0.85rem;
+            color: var(--cobre);
+            font-weight: 600;
+        }
+
+        /* ===== CASES ===== */
+        .cases-section {
+            padding: 80px 40px;
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .case-card {
+            background: var(--branco);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s;
+        }
+
+        .case-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .case-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--borgonha), var(--azul-meia-noite));
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--branco);
+            font-size: 3rem;
+        }
+
+        .case-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: var(--branco);
+        }
+
+        .case-content {
+            padding: 20px;
+        }
+
+        .case-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .case-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .case-resultado {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--grafite);
+            color: var(--branco);
+            padding: 60px 40px 30px;
+        }
+
+        .footer-container {
+            max-width: 1440px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+        }
+
+        .footer-logo h2 {
+            font-size: 2rem;
+            background: var(--gradiente-nexus);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo p {
+            opacity: 0.8;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--branco);
+            transition: all 0.3s;
+        }
+
+        .footer-social a:hover {
+            background: var(--cobre);
+            transform: translateY(-3px);
+        }
+
+        .footer-col h4 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--branco);
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--cobre);
+        }
+
+        .footer-bottom {
+            max-width: 1440px;
+            margin: 40px auto 0;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* ===== RESPONSIVO ===== */
+        @media (max-width: 1200px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .segmentos-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .produtos-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .grafias-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 15px 20px;
+            }
+            
+            .nav-nexus {
+                display: none;
+            }
+            
+            .hero-nexus {
+                grid-template-columns: 1fr;
+                padding: 100px 20px 40px;
+            }
+            
+            .segmentos-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .produtos-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .grafias-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cases-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER NEXUS -->
+    <header class="nexus-header">
+        <div class="header-container">
+            <div class="logo-nexus">
+                <h1>NEXUS</h1>
+                <div class="variants">
+                    <span class="variant">NEXVS</span>
+                    <span class="variant">NEXUS°</span>
+                    <span class="variant">NEXUS+</span>
+                </div>
+            </div>
+            
+            <nav class="nav-nexus">
+                <a href="#nexus">NEXUS</a>
+                <a href="#segmentos">Segmentos</a>
+                <a href="#produtos">Produtos</a>
+                <a href="#grafias">Grafias</a>
+                <a href="#cases">Cases</a>
+                <a href="#contato">Contato</a>
+            </nav>
+            
+            <button class="btn-consulta" onclick="abrirChat()">
+                <i class="fas fa-comment-dots"></i> Consultar Nexus
+            </button>
+        </div>
+    </header>
+
+    <!-- CHAT NEXUS -->
+    <button class="chat-toggle" onclick="toggleChat()">
+        <i class="fas fa-crown"></i>
+    </button>
+
+    <div class="nexus-chat" id="nexusChat">
+        <div class="chat-header">
+            <i class="fas fa-crown"></i>
+            <div>
+                <h3>NEXUS • Oráculo Estratégico</h3>
+                <p>Política • Marketing • Finanças</p>
+            </div>
+        </div>
+        
+        <div class="chat-messages" id="chatMessages">
+            <div class="message nexus">
+                <div class="message-content">
+                    Bem-vindo ao NEXUS. Sou o oráculo de conexões estratégicas. Como posso integrar política, marketing e finanças para seu negócio hoje?
+                </div>
+            </div>
+        </div>
+        
+        <div class="chat-input">
+            <input type="text" id="chatInput" placeholder="Fale com o NEXUS..." onkeypress="if(event.key === 'Enter') enviarMensagem()">
+            <button onclick="enviarMensagem()"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <!-- HERO NEXUS -->
+    <section class="hero-nexus" id="nexus">
+        <div class="hero-content">
+            <span class="hero-tag">
+                <i class="fas fa-crown"></i> NEXUS • Conexões Estratégicas
+            </span>
+            
+            <h1 class="hero-title">
+                O <span>ponto de encontro</span><br>entre poder, mercado e capital
+            </h1>
+            
+            <p class="hero-description">
+                Integramos política, marketing e finanças em uma plataforma única de orquestração estratégica. Três segmentos, um só NEXUS.
+            </p>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <h3>+450</h3>
+                    <p>Estratégias Integradas</p>
+                </div>
+                <div class="stat-item">
+                    <h3>3</h3>
+                    <p>Segmentos de Atuação</p>
+                </div>
+                <div class="stat-item">
+                    <h3>94%</h3>
+                    <p>Taxa de Sucesso</p>
+                </div>
+            </div>
+            
+            <div class="hero-actions">
+                <button class="btn-primary" onclick="abrirChat()">
+                    <i class="fas fa-comment-dots"></i> Consultar Agora
+                </button>
+                <button class="btn-outline" onclick="verDemonstracao()">
+                    <i class="fas fa-play"></i> Ver Demonstração
+                </button>
+            </div>
+        </div>
+        
+        <div class="hero-visual">
+            <div class="nexus-card">
+                <div class="segment-row">
+                    <div class="segment-info">
+                        <div class="segment-icon icon-politica"><i class="fas fa-landmark"></i></div>
+                        <div>
+                            <div class="segment-name">NEXVS • Política</div>
+                            <div class="segment-status"><i class="fas fa-circle"></i> Ativo</div>
+                        </div>
+                    </div>
+                    <div class="segment-value">Poder</div>
+                </div>
+                
+                <div class="segment-row">
+                    <div class="segment-info">
+                        <div class="segment-icon icon-marketing"><i class="fas fa-chart-line"></i></div>
+                        <div>
+                            <div class="segment-name">NEXUS° • Marketing</div>
+                            <div class="segment-status"><i class="fas fa-circle"></i> Ativo</div>
+                        </div>
+                    </div>
+                    <div class="segment-value">Conexão</div>
+                </div>
+                
+                <div class="segment-row">
+                    <div class="segment-info">
+                        <div class="segment-icon icon-financas"><i class="fas fa-coins"></i></div>
+                        <div>
+                            <div class="segment-name">NEXUS+ • Finanças</div>
+                            <div class="segment-status"><i class="fas fa-circle"></i> Ativo</div>
+                        </div>
+                    </div>
+                    <div class="segment-value">Capital</div>
+                </div>
+                
+                <div style="margin-top: 20px; padding-top: 20px; border-top: 1px dashed #eee; text-align: center; color: #666; font-size: 0.9rem;">
+                    <i class="fas fa-sync-alt fa-spin"></i> Integrando estratégias em tempo real
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEGMENTOS -->
+    <section class="segmentos-section" id="segmentos">
+        <div class="section-header">
+            <h2>Três <span>Segmentos</span>, Um Só NEXUS</h2>
+            <p>Cada área com estratégia especializada, todas integradas no ponto central de conexão</p>
+        </div>
+        
+        <div class="segmentos-grid">
+            <div class="segmento-card card-politica" onclick="abrirSegmento('politica')">
+                <div class="segmento-icon icon-politica"><i class="fas fa-landmark"></i></div>
+                <h3>NEXVS</h3>
+                <p>Estratégia política integrada: representação, mandato, coalizões e transformação social com visão de longo prazo.</p>
+                <span class="segmento-tag tag-politica">Política</span>
+            </div>
+            
+            <div class="segmento-card card-marketing" onclick="abrirSegmento('marketing')">
+                <div class="segmento-icon icon-marketing"><i class="fas fa-chart-line"></i></div>
+                <h3>NEXUS°</h3>
+                <p>Conexões que criam tribos: marketing estratégico, posicionamento de marca e comunicação de alto impacto.</p>
+                <span class="segmento-tag tag-marketing">Marketing</span>
+            </div>
+            
+            <div class="segmento-card card-financas" onclick="abrirSegmento('financas')">
+                <div class="segmento-icon icon-financas"><i class="fas fa-coins"></i></div>
+                <h3>NEXUS+</h3>
+                <p>Estruturação de capital, estratégia financeira e crescimento sustentável com solidez e precisão.</p>
+                <span class="segmento-tag tag-financas">Finanças</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUTOS -->
+    <section class="produtos-section" id="produtos">
+        <div class="section-header">
+            <h2>Produtos <span>Estratégicos</span></h2>
+            <p>Soluções integradas para cada segmento</p>
+        </div>
+        
+        <div class="produtos-grid">
+            <div class="produto-card">
+                <div class="produto-header">
+                    <h3>NEXVS • Mandato</h3>
+                    <i class="fas fa-landmark" style="color: var(--borgonha);"></i>
+                </div>
+                <p class="produto-desc">Estratégia completa para campanhas e gestão política, com análise de cenários e posicionamento.</p>
+                <ul class="produto-features">
+                    <li><i class="fas fa-check"></i> Análise de cenário político</li>
+                    <li><i class="fas fa-check"></i> Estratégia de comunicação</li>
+                    <li><i class="fas fa-check"></i> Gestão de coalizões</li>
+                </ul>
+                <a href="#" class="produto-link">Ativar estratégia <i class="fas fa-arrow-right"></i></a>
+            </div>
+            
+            <div class="produto-card">
+                <div class="produto-header">
+                    <h3>NEXUS° • Tribo</h3>
+                    <i class="fas fa-chart-line" style="color: var(--cobre);"></i>
+                </div>
+                <p class="produto-desc">Construção de comunidades e posicionamento de marca com dados e criatividade.</p>
+                <ul class="produto-features">
+                    <li><i class="fas fa-check"></i> Posicionamento estratégico</li>
+                    <li><i class="fas fa-check"></i> Gestão de comunidades</li>
+                    <li><i class="fas fa-check"></i> Análise de tendências</li>
+                </ul>
+                <a href="#" class="produto-link">Ativar estratégia <i class="fas fa-arrow-right"></i></a>
+            </div>
+            
+            <div class="produto-card">
+                <div class="produto-header">
+                    <h3>NEXUS+ • Capital</h3>
+                    <i class="fas fa-coins" style="color: var(--azul-meia-noite);"></i>
+                </div>
+                <p class="produto-desc">Estruturação financeira, captação e gestão de recursos para crescimento sustentável.</p>
+                <ul class="produto-features">
+                    <li><i class="fas fa-check"></i> Estruturação de capital</li>
+                    <li><i class="fas fa-check"></i> Gestão de riscos</li>
+                    <li><i class="fas fa-check"></i> Estratégia de investimentos</li>
+                </ul>
+                <a href="#" class="produto-link">Ativar estratégia <i class="fas fa-arrow-right"></i></a>
+            </div>
+            
+            <div class="produto-card">
+                <div class="produto-header">
+                    <h3>NEXUS • Integração</h3>
+                    <i class="fas fa-crown" style="color: var(--dourado);"></i>
+                </div>
+                <p class="produto-desc">Orquestração completa entre política, marketing e finanças para resultados integrados.</p>
+                <ul class="produto-features">
+                    <li><i class="fas fa-check"></i> Conexão entre segmentos</li>
+                    <li><i class="fas fa-check"></i> Estratégia unificada</li>
+                    <li><i class="fas fa-check"></i> Resultados sinérgicos</li>
+                </ul>
+                <a href="#" class="produto-link">Ativar integração <i class="fas fa-arrow-right"></i></a>
+            </div>
+            
+            <div class="produto-card">
+                <div class="produto-header">
+                    <h3>NEXUS • Dados</h3>
+                    <i class="fas fa-database" style="color: var(--prata);"></i>
+                </div>
+                <p class="produto-desc">Inteligência de dados aplicada a decisões estratégicas nos três segmentos.</p>
+                <ul class="produto-features">
+                    <li><i class="fas fa-check"></i> Análise preditiva</li>
+                    <li><i class="fas fa-check"></i> Dashboards estratégicos</li>
+                    <li><i class="fas fa-check"></i> Insights acionáveis</li>
+                </ul>
+                <a href="#" class="produto-link">Ativar inteligência <i class="fas fa-arrow-right"></i></a>
+            </div>
+            
+            <div class="produto-card">
+                <div class="produto-header">
+                    <h3>NEXUS • Formação</h3>
+                    <i class="fas fa-graduation-cap" style="color: var(--grafite);"></i>
+                </div>
+                <p class="produto-desc">Capacitação de líderes e equipes para atuação estratégica integrada.</p>
+                <ul class="produto-features">
+                    <li><i class="fas fa-check"></i> Programas de liderança</li>
+                    <li><i class="fas fa-check"></i> Workshops estratégicos</li>
+                    <li><i class="fas fa-check"></i> Mentoria executiva</li>
+                </ul>
+                <a href="#" class="produto-link">Ativar formação <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- GRAFIAS -->
+    <section class="grafias-section" id="grafias">
+        <div class="grafias-container">
+            <h2 class="grafias-title">Grafias <span>NEXUS</span></h2>
+            
+            <div class="grafias-grid">
+                <div class="grafia-card">
+                    <div class="grafia">NEXUS</div>
+                    <div class="estilo">Clássica • Maiúscula</div>
+                    <div class="aplicacao">Marca principal</div>
+                </div>
+                
+                <div class="grafia-card">
+                    <div class="grafia">Nexus</div>
+                    <div class="estilo">Capitalizada</div>
+                    <div class="aplicacao">Uso cotidiano</div>
+                </div>
+                
+                <div class="grafia-card">
+                    <div class="grafia">NEXVS</div>
+                    <div class="estilo">Romana • Política</div>
+                    <div class="aplicacao">Segmento político</div>
+                </div>
+                
+                <div class="grafia-card">
+                    <div class="grafia">NEXUS°</div>
+                    <div class="estilo">Com grau • Marketing</div>
+                    <div class="aplicacao">Segmento marketing</div>
+                </div>
+                
+                <div class="grafia-card">
+                    <div class="grafia">NEXUS+</div>
+                    <div class="estilo">Plus • Finanças</div>
+                    <div class="aplicacao">Segmento finanças</div>
+                </div>
+                
+                <div class="grafia-card">
+                    <div class="grafia">NĒXUS</div>
+                    <div class="estilo">Acento longo</div>
+                    <div class="aplicacao">Sofisticação</div>
+                </div>
+                
+                <div class="grafia-card">
+                    <div class="grafia">N3XUS</div>
+                    <div class="estilo">Numérico • Tech</div>
+                    <div class="aplicacao">Inovação</div>
+                </div>
+                
+                <div class="grafia-card">
+                    <div class="grafia">The Nexus</div>
+                    <div class="estilo">Inglês • Premium</div>
+                    <div class="aplicacao">Mercado global</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CASES -->
+    <section class="cases-section" id="cases">
+        <div class="section-header">
+            <h2>Cases <span>NEXUS</span></h2>
+            <p>Resultados reais de estratégias integradas</p>
+        </div>
+        
+        <div class="cases-grid">
+            <div class="case-card">
+                <div class="case-image">
+                    <i class="fas fa-landmark"></i>
+                    <div class="case-overlay">
+                        <span class="segment-badge badge-politica"><i class="fas fa-landmark"></i> NEXVS</span>
+                    </div>
+                </div>
+                <div class="case-content">
+                    <h3>Campanha de Reeleição • Capital Federal</h3>
+                    <div class="case-meta">
+                        <span><i class="far fa-calendar"></i> 2025</span>
+                        <span><i class="fas fa-tag"></i> Política</span>
+                    </div>
+                    <span class="case-resultado" style="background: rgba(128,0,32,0.1); color: var(--borgonha);">+32% votos válidos</span>
+                </div>
+            </div>
+            
+            <div class="case-card">
+                <div class="case-image">
+                    <i class="fas fa-chart-line"></i>
+                    <div class="case-overlay">
+                        <span class="segment-badge badge-marketing"><i class="fas fa-chart-line"></i> NEXUS°</span>
+                    </div>
+                </div>
+                <div class="case-content">
+                    <h3>Rebranding • Grupo Vanguarda</h3>
+                    <div class="case-meta">
+                        <span><i class="far fa-calendar"></i> 2025</span>
+                        <span><i class="fas fa-tag"></i> Marketing</span>
+                    </div>
+                    <span class="case-resultado" style="background: rgba(184,115,51,0.1); color: var(--cobre);">+156% engajamento</span>
+                </div>
+            </div>
+            
+            <div class="case-card">
+                <div class="case-image">
+                    <i class="fas fa-coins"></i>
+                    <div class="case-overlay">
+                        <span class="segment-badge badge-financas"><i class="fas fa-coins"></i> NEXUS+</span>
+                    </div>
+                </div>
+                <div class="case-content">
+                    <h3>Fusão Estratégica • Nexus Capital</h3>
+                    <div class="case-meta">
+                        <span><i class="far fa-calendar"></i> 2024</span>
+                        <span><i class="fas fa-tag"></i> Finanças</span>
+                    </div>
+                    <span class="case-resultado" style="background: rgba(25,25,112,0.1); color: var(--azul-meia-noite);">R$ 450M em ativos</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contato">
+        <div class="footer-container">
+            <div class="footer-logo">
+                <h2>NEXUS</h2>
+                <p>O ponto de encontro entre poder, mercado e capital. Estratégia integrada para resultados superiores.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-x-twitter"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Segmentos</h4>
+                <ul>
+                    <li><a href="#">NEXVS • Política</a></li>
+                    <li><a href="#">NEXUS° • Marketing</a></li>
+                    <li><a href="#">NEXUS+ • Finanças</a></li>
+                    <li><a href="#">NEXUS • Integração</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Produtos</h4>
+                <ul>
+                    <li><a href="#">Mandato</a></li>
+                    <li><a href="#">Tribo</a></li>
+                    <li><a href="#">Capital</a></li>
+                    <li><a href="#">Integração</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Contato</h4>
+                <ul>
+                    <li><i class="fas fa-phone"></i> (11) 3554-8822</li>
+                    <li><i class="fas fa-envelope"></i> <a href="/cdn-cgi/l/email-protection#bcd5d2dad3fccdd9cfd2cfd9cfd2c8d9cf92dfd3d1"><span class="__cf_email__" data-cfemail="4b22252d240b3a2e3825382e38253f2e3865282426">[email&#160;protected]</span></a></li>
+                    <li><i class="fas fa-map-marker-alt"></i> Av. Paulista, 1578 • São Paulo/SP</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>© 2026 NEXUS • Estratégia Integrada. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script>
+        // Controle do Chat
+        let chatVisible = false;
+        
+        function toggleChat() {
+            const chat = document.getElementById('nexusChat');
+            chatVisible = !chatVisible;
+            chat.classList.toggle('active');
+        }
+        
+        function abrirChat() {
+            const chat = document.getElementById('nexusChat');
+            chat.classList.add('active');
+            chatVisible = true;
+        }
+        
+        function enviarMensagem() {
+            const input = document.getElementById('chatInput');
+            const mensagem = input.value.trim();
+            
+            if (mensagem === '') return;
+            
+            // Adiciona mensagem do usuário
+            const chatMessages = document.getElementById('chatMessages');
+            const msgUsuario = document.createElement('div');
+            msgUsuario.className = 'message usuario';
+            msgUsuario.innerHTML = `<div class="message-content">${mensagem}</div>`;
+            chatMessages.appendChild(msgUsuario);
+            
+            input.value = '';
+            
+            // Simula resposta do NEXUS
+            setTimeout(() => {
+                const msgNexus = document.createElement('div');
+                msgNexus.className = 'message nexus';
+                
+                let resposta = '';
+                const msgLower = mensagem.toLowerCase();
+                
+                if (msgLower.includes('política') || msgLower.includes('politica') || msgLower.includes('nexvs')) {
+                    resposta = 'Acionando estratégia NEXVS (Política). Podemos auxiliar com campanhas, gestão de mandato, análise de cenário e construção de coalizões. Deseja uma consultoria estratégica?';
+                } else if (msgLower.includes('marketing') || msgLower.includes('nexus°') || msgLower.includes('nexus grau')) {
+                    resposta = 'Estratégia NEXUS° (Marketing) ativada. Trabalhamos posicionamento de marca, gestão de comunidades, campanhas de alto impacto e análise de tendências. Qual o desafio da sua marca?';
+                } else if (msgLower.includes('finanças') || msgLower.includes('financas') || msgLower.includes('nexus+') || msgLower.includes('nexus plus')) {
+                    resposta = 'Estratégia NEXUS+ (Finanças) online. Estruturamos capital, gerenciamos riscos e desenvolvemos estratégias de crescimento sustentável. Como podemos fortalecer seu patrimônio?';
+                } else {
+                    resposta = 'O NEXUS integra três frentes estratégicas: NEXVS (Política), NEXUS° (Marketing) e NEXUS+ (Finanças). Em qual delas podemos atuar para potencializar seus resultados?';
+                }
+                
+                msgNexus.innerHTML = `<div class="message-content">${resposta}</div>`;
+                chatMessages.appendChild(msgNexus);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 1000);
+            
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        function verDemonstracao() {
+            abrirChat();
+            setTimeout(() => {
+                document.getElementById('chatInput').value = 'Quero uma demonstração para integração estratégica';
+                enviarMensagem();
+            }, 500);
+        }
+        
+        function abrirSegmento(segmento) {
+            abrirChat();
+            setTimeout(() => {
+                let msg = '';
+                switch(segmento) {
+                    case 'politica': msg = 'Quero falar com NEXVS - Estratégia Política'; break;
+                    case 'marketing': msg = 'Quero falar com NEXUS° - Estratégia de Marketing'; break;
+                    case 'financas': msg = 'Quero falar com NEXUS+ - Estratégia Financeira'; break;
+                }
+                document.getElementById('chatInput').value = msg;
+                enviarMensagem();
+            }, 500);
+        }
+        
+        // Scroll suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
